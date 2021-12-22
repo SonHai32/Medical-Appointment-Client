@@ -1,3 +1,4 @@
+import { FooterCompModule } from './modules/comp-modules/footer/footer-comp.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -24,6 +25,7 @@ registerLocaleData(vi);
     HttpClientModule,
     BrowserAnimationsModule,
     MainPageCompModule,
+    FooterCompModule,
     HeaderCompModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: vi_VN }],

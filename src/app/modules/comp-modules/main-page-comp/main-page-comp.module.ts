@@ -1,3 +1,4 @@
+import { MainPageSectionFourCompModule } from './../main-page-section-four-comp/main-page-section-four-comp.module';
 import { MainPageSectionThreeCompModule } from './../main-page-section-three-comp/main-page-section-three-comp.module';
 import { MainPageSectionTwoCompModule } from './../main-page-section-two-comp/main-page-section-two-comp.module';
 import { MainPageSectionOneCompModule } from './../main-page-section-one-comp/main-page-section-one-comp.module';
@@ -18,6 +19,7 @@ import { MainPageComponent } from 'src/app/pages/main-page/main-page.component';
     MainPageSectionOneCompModule,
     MainPageSectionTwoCompModule,
     MainPageSectionThreeCompModule,
+    MainPageSectionFourCompModule,
   ],
   exports: [MainPageComponent],
 })
