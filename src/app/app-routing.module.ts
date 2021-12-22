@@ -7,6 +7,20 @@ const routes: Routes = [
     path: '',
     component: MainPageComponent,
   },
+  {
+    path: 'hospital',
+    loadChildren: () =>
+      import('./modules/core-modules/hospital.module').then(
+        (m) => m.HospitalModule
+      ),
+  },
+  {
+    path: 'booking',
+    loadChildren: () =>
+      import('./modules/core-modules/booking.module').then(
+        (m) => m.BookingModule
+      ),
+  },
 ];
 
 @NgModule({

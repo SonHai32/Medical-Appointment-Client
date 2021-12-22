@@ -37,3 +37,20 @@
 //     }
 //   }
 // }
+
+* {
+  scrollbar-width: auto;
+  // scrollbar-color: #fd70a1;
+  scrollbar-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  // background-color: #fd70a1;
+  background-color: rgba(0, 0, 0, 0.1);
+}

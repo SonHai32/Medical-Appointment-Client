@@ -11,6 +11,8 @@ import {
   EditOutline,
   DeleteOutline,
   CheckCircleTwoTone,
+  HomeOutline,
+  SearchOutline,
   ArrowRightOutline,
 } from '@ant-design/icons-angular/icons';
 
@@ -25,6 +27,8 @@ const icons = [
   DeleteOutline,
   CheckCircleTwoTone,
   ArrowRightOutline,
+  HomeOutline,
+  SearchOutline,
 ];
 
 @NgModule({

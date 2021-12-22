@@ -1,0 +1,26 @@
+<div nz-row nzAlign="middle" nzJustify="start">
+  <div nz-col nzSpan="24" class="p-2">
+    <h5 nz-typography>Chọn bác sĩ / giờ khám</h5>
+  </div>
+  <div nz-col nzSpan="24">
+    <nz-collapse nzAccordion [nzExpandIconPosition]="'right'">
+      <nz-collapse-panel *ngFor="let shift of shiftList" [nzHeader]="doctorTpl" [nzActive]="shift.active">
+        <p>{{ shift.name }} content</p>
+        <ng-template #doctorTpl>
+          <div nz-row nzAlign="middle" nzJustify="start" class="p-3" [nzGutter]="[12, 12]">
+            <div nz-col>
+              Icon
+            </div>
+            <div nz-col>
+              <div nz-row>Ten bac si</div>
+              <div nz-row>Phongg </div>
+            </div>
+          </div>
+        </ng-template>
+      </nz-collapse-panel>
+    </nz-collapse>
+  </div>
+  <div nz-col nzSpan="24" class="p-3 bg-white d-flex justify-content-end">
+    <button nz-button nzType="primary">Tiếp tục</button>
+  </div>
+</div>
