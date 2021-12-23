@@ -1,6 +1,7 @@
 import { AcademicRank } from './academic-rank.model';
 import { Gender } from './gender.model';
 import { Hospital } from './hospital.model';
+import { Shift } from './shift.model';
 import { Specialist } from './specialist.model';
 import { Ward } from './ward.model';
 
@@ -17,5 +18,6 @@ export interface Doctor {
   ward?: Ward;
   gender: Gender;
   hospital?: Hospital;
+  shifts?: Shift[];
   academicRank: AcademicRank[];
 }

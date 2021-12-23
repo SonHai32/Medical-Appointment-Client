@@ -14,6 +14,16 @@ import {
   HomeOutline,
   SearchOutline,
   ArrowRightOutline,
+  PlusSquareOutline,
+  CalendarOutline,
+  EnvironmentOutline,
+  PhoneOutline,
+  MailOutline,
+  IdcardOutline,
+  MobileOutline,
+  TeamOutline,
+  FolderOutline,
+  GlobalOutline,
 } from '@ant-design/icons-angular/icons';
 
 const icons = [
@@ -29,6 +39,16 @@ const icons = [
   ArrowRightOutline,
   HomeOutline,
   SearchOutline,
+  PlusSquareOutline,
+  CalendarOutline,
+  EnvironmentOutline,
+  PhoneOutline,
+  MailOutline,
+  IdcardOutline,
+  MobileOutline,
+  TeamOutline,
+  FolderOutline,
+  GlobalOutline,
 ];
 
 @NgModule({
