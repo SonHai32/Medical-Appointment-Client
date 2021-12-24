@@ -1,1 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+
+// body {
+//   // background-image: url("https://cdn.dribbble.com/users/3241222/screenshots/14327950/media/52966d7e3bf50d0db4edb2c8ce34fe47.png?compress=1&resize=1600x1200");
+//   // background-image: url("https://cdn.dribbble.com/users/992274/screenshots/6278477/composition_with_little_men_kit8-net.png?compress=1&resize=800x600");
+//   background-image: url('https://cdn.dribbble.com/users/870476/screenshots/6510332/hic-illustration-new_4x.jpg?compress=1&resize=1600x1200');
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   position: relative;
+// }
+
+.bg-filter {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+}
+
+.absolute-center {
+  position: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+// [data-aos="test"] {
+//   opacity: 0;
+//   transition-property: transform, opacity;
+
+//   &.aos-animate {
+//     opacity: 1;
+//   }
+
+//   @media screen and (min-width: 768px) {
+//     transform: translateX(100px);
+
+//     &.aos-animate {
+//       transform: translateX(0);
+//     }
+//   }
+// }
+
+* {
+  scrollbar-width: auto;
+  // scrollbar-color: #fd70a1;
+  scrollbar-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  // background-color: #fd70a1;
+  background-color: rgba(0, 0, 0, 0.1);
+}
