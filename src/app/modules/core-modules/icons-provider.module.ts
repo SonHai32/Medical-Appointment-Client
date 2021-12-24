@@ -24,6 +24,8 @@ import {
   TeamOutline,
   FolderOutline,
   GlobalOutline,
+  FileAddOutline,
+  LockOutline,
 } from '@ant-design/icons-angular/icons';
 
 const icons = [
@@ -49,6 +51,8 @@ const icons = [
   TeamOutline,
   FolderOutline,
   GlobalOutline,
+  FileAddOutline,
+  LockOutline,
 ];
 
 @NgModule({

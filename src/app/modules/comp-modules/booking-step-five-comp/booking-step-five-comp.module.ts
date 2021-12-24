@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { IconsProviderModule } from '../../core-modules/icons-provider.module';
 
@@ -17,6 +18,8 @@ import { IconsProviderModule } from '../../core-modules/icons-provider.module';
     NzGridModule,
     IconsProviderModule,
     FormsModule,
+    NzRadioModule,
+    NzDividerModule,
   ],
   exports: [BookingStepFiveComponent],
 })

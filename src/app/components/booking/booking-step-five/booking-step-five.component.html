@@ -3,19 +3,59 @@
     <h5 nz-typography>Thanh toán</h5>
   </div>
   <div nz-col nzSpan="24" class="p-3 bg-white">
-    <div nz-row nzAlign="middle" nzJustify="center" [nzGutter]="[12, 12]">
+    <div nz-row nzJustify="center" [nzGutter]="[12, 12]">
       <div nz-col nzXXl="12" nzXl="12" nzLg="12" nzSpan="24">
-        <nz-radio-group [ngModel]="'A'">
-          <label nz-radio nzValue="A">Option A</label>
-          <label nz-radio nzValue="B">Option B</label>
-          <label nz-radio nzValue="C">Option C</label>
-
+        <h5 nz-typography>Chọn phương thức thanh toán</h5>
+        <nz-radio-group [(ngModel)]="radioValue">
+          <label nz-radio nzValue="A">Thanh toán bằng thẻ ngân hàng</label>
+          <label nz-radio nzValue="B">Thanh toán bằng ví Momo</label>
+          <label nz-radio nzValue="C">Thanh toán bằng ZaloPay</label>
         </nz-radio-group>
       </div>
-      <div nz-col nzXXl="12" nzXl="12" nzLg="12" nzSpan="24"></div>
+      <div nz-col nzXXl="12" nzXl="12" nzLg="12" nzSpan="24">
+        <div class="d-flex align-items-center">
+          <i nz-icon nzType="file-add" nzTheme="outline" class="me-2"></i>
+          <h5 nz-typography class="m-0 p-0">CHUYÊN KHOA</h5>
+        </div>
+        <span nz-typography nzType="secondary" class="d-flex justify-content-start align-items-center my-1">
+          <i nz-icon nzType="home" nzTheme="outline" class="me-2"></i>
+          Bệnh nhân: Nguyễn Văn A</span>
+        <span nz-typography nzType="secondary" class="d-flex justify-content-start align-items-center my-1">
+          <i nz-icon nzType="home" nzTheme="outline" class="me-2"></i>
+          Bệnh viện: Đa khoa khu vưc củ chi</span>
+        <span nz-typography nzType="secondary" class="d-flex justify-content-start align-items-center my-1">
+          <i nz-icon nzType="calendar" nzTheme="outline" class="me-2"></i>
+          Ngày khám: 31/12/2021 (08:00-09:00)</span>
+        <span nz-typography nzType="secondary" class="d-flex justify-content-start align-items-center my-1">
+          <i nz-icon nzType="user" nzTheme="outline" class="me-2"></i>
+          Người khám: TS.BS &nbsp;<strong>Nguyen Van A</strong> &nbsp;- Phòng 20</span>
+        <nz-divider class="ant-text-primary" nzOrientation="center" nzType="horizontal" nzDashed="true"></nz-divider>
+        <div nz-row nzJustify="end">
+          <div nz-col>
+            <span nz-typography><strong>Tiền khám:&nbsp;</strong> {{150000 | currency: 'VND'}}</span>
+          </div>
+          <div nz-col nzSpan="24"></div>
+          <div nz-col class="mt-2">
+            <span nz-typography><strong>Tổng tiền khám: </strong> <span nz-typography class="ant-text-primary">
+                {{150000 | currency: 'VND'}}
+              </span> </span>
+          </div>
+          <div nz-col nzSpan="24"></div>
+          <div nz-col class="mt-2">
+            <span nz-typography><strong>Phí dịch vụ:</strong> <span nz-typography class="ant-text-primary">
+                {{10000 | currency:
+                'VND'}}
+              </span> </span>
+          </div>
+          <nz-divider class="ant-text-primary" nzOrientation="center" nzType="horizontal" nzDashed="true"></nz-divider>
+          <h4 nz-typography>TỔNG CỘNG <span nz-typography class="ant-text-primary">{{150000 | currency: 'VND'}}</span>
+          </h4>
+        </div>
+      </div>
     </div>
   </div>
   <div nz-col nzSpan="24" class="p-3 bg-white d-flex justify-content-end">
-    <button nz-button nzType="primary">Tiếp tục</button>
+    <button nz-button nzType="default" class="mx-1">Quay lại</button>
+    <button nz-button nzType="primary" class="mx-1">Thanh toán</button>
   </div>
 </div>
