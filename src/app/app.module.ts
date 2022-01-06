@@ -1,3 +1,4 @@
+import { RegisterCompModule } from './modules/comp-modules/register-comp/register-comp.module';
 import { LoginCompModule } from './modules/comp-modules/login-comp/login-comp.module';
 import { FooterCompModule } from './modules/comp-modules/footer/footer-comp.module';
 import { NgModule } from '@angular/core';
@@ -29,6 +30,7 @@ registerLocaleData(vi);
     FooterCompModule,
     HeaderCompModule,
     LoginCompModule,
+    RegisterCompModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: vi_VN }],
   bootstrap: [AppComponent],
