@@ -1,18 +1,18 @@
 <div nz-row nzAlign="middle" nzJustify="center" class="p-3 vh-100">
   <div nz-col nzXXl="6" nzXl="8" nzLg="12" nzMd="14" nzSpan="24" class="p-4 bg-white rounded">
     <h3 nz-typography class="ant-text-primary text-center">Đăng nhập</h3>
-    <form nz-form>
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="formSumbit()">
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your username!">
+        <nz-form-control [nzErrorTip]="getErrorTooltips('username')">
           <nz-input-group nzPrefixIcon="user">
-            <input type="text" nz-input placeholder="Username" />
+            <input formControlName="username" type="text" nz-input placeholder="Username" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-form-control [nzErrorTip]="getErrorTooltips('password')">
           <nz-input-group nzPrefixIcon="lock">
-            <input type="password" nz-input placeholder="Password" />
+            <input formControlName="password" type="password" nz-input placeholder="Password" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -26,29 +26,30 @@
           <a>Quên mật khẩu ?</a>
         </div>
         <div nz-col nzSpan="24" class="d-flex justify-content-center align-items-center my-2">
-          <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Đăng nhập</button>
+          <button type="submit" nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Đăng
+            nhập</button>
         </div>
         <div nz-col nzSpan="24" class="d-flex justify-content-end">
           <a nz-typographys>Bạn chưa có tài khoản ? Đăng ký</a>
         </div>
         <div nz-col>
-          <h6 nz-typography>Hoặc đăng nhập bằng</h6>
+          <h6 nz-typography class="m-0 p-0">Hoặc đăng nhập bằng</h6>
         </div>
         <div nz-col nzSpan="24" class="mt-3">
-          <div nz-row nzJustify="center" [nzGutter]="[12, 12]">
+          <div style="font-size: 24px;" nz-row nzJustify="center" [nzGutter]="[24, 0]">
             <div nz-col>
               <a href="#">
-                <img width="48" height="48" src="assets/icons/google.svg" alt="">
+                <i nz-icon nzType="facebook" nzTheme="outline"></i>
               </a>
             </div>
             <div nz-col>
               <a href="#">
-                <img width="48" height="48" src="assets/icons/facebook-fill.svg" alt="">
+                <i nz-icon nzType="google" nzTheme="outline"></i>
               </a>
             </div>
             <div nz-col>
               <a href="#">
-                <img width="48" height="48" src="assets/icons/google.svg" alt="">
+                <i nz-icon nzType="phone" nzTheme="outline"></i>
               </a>
             </div>
           </div>
