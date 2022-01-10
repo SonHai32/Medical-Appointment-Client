@@ -1,4 +1,4 @@
-import { RegisterComponent } from './pages/register/register.component'
+import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -22,6 +22,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/core-modules/hospital.module').then(
         (m) => m.HospitalModule
+      ),
+  },
+  {
+    path: 'doctors',
+    loadChildren: () =>
+      import('./modules/core-modules/doctors.module').then(
+        (m) => m.DoctorsModule
       ),
   },
   {

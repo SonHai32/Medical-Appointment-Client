@@ -28,6 +28,7 @@ import {
   LockOutline,
   FacebookOutline,
   GoogleOutline,
+  FileProtectOutline,
 } from '@ant-design/icons-angular/icons';
 
 const icons = [
@@ -57,6 +58,7 @@ const icons = [
   LockOutline,
   FacebookOutline,
   GoogleOutline,
+  FileProtectOutline,
 ];
 
 @NgModule({

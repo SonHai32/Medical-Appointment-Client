@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './../../../pages/register/register.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +15,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
   declarations: [RegisterComponent],
   imports: [
     CommonModule,
+    RouterModule,
     NzGridModule,
     NzTypographyModule,
     NzInputModule,

@@ -9,11 +9,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IconsProviderModule } from '../../core-modules/icons-provider.module';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [LoginComponent],
   imports: [
     CommonModule,
+    RouterModule,
     NzGridModule,
     NzTypographyModule,
     NzInputModule,

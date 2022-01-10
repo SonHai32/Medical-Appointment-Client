@@ -1,48 +1,49 @@
 <div nz-row nzAlign="middle" nzJustify="center" class="p-3 vh-100">
   <div nz-col nzXXl="6" nzXl="8" nzLg="12" nzMd="14" nzSpan="24" class="p-4 bg-white rounded">
     <h3 nz-typography class="ant-text-primary text-center">Đăng ký</h3>
-    <form nz-form>
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your username!">
+        <nz-form-control [nzErrorTip]="getErrorTooltips('username')">
           <nz-input-group nzPrefixIcon="user">
-            <input type="text" nz-input placeholder="Tên tài khoản" />
+            <input formControlName="username" type="text" nz-input placeholder="Tên tài khoản" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-form-control [nzErrorTip]="getErrorTooltips('password')">
           <nz-input-group nzPrefixIcon="lock">
-            <input type="password" nz-input placeholder="Mật khẩu" />
+            <input formControlName="password" type="password" nz-input placeholder="Mật khẩu" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-form-control [nzErrorTip]="getErrorTooltips('fullname')">
           <nz-input-group nzPrefixIcon="idcard">
-            <input type="text" nz-input placeholder="Họ và tên" />
+            <input formControlName="fullname" type="text" nz-input placeholder="Họ và tên" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-form-control [nzErrorTip]="getErrorTooltips('emailAddress')">
           <nz-input-group nzPrefixIcon="mail">
-            <input type="text" nz-input placeholder="Địa chỉ email" />
+            <input formControlName="emailAddress" type="text" nz-input placeholder="Địa chỉ email" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-form-control [nzErrorTip]="getErrorTooltips('phoneNumber')">
           <nz-input-group nzPrefixIcon="phone">
-            <input type="text" nz-input placeholder="Số điện thoại" />
+            <input formControlName="phoneNumber" type="text" nz-input placeholder="Số điện thoại" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <div nz-row class="my-2" nzJustify="center">
         <div nz-col nzSpan="24" class="d-flex justify-content-center align-items-center my-2">
-          <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Đăng ký</button>
+          <button type="submit" nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Đăng
+            ký</button>
         </div>
         <div nz-col nzSpan="24" class="d-flex justify-content-end">
-          <a nz-typographys>Bạn đã có tài khoản ? Đăng nhập</a>
+          <a nz-typography [routerLink]="['/login']">Bạn đã có tài khoản ? Đăng nhập</a>
         </div>
         <div nz-col nzSpan="24">
           <div style="font-size: 24px;" nz-row nzJustify="center" [nzGutter]="[24, 0]">
