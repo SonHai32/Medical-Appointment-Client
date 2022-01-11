@@ -1,1 +1,37 @@
-<p>user works!</p>
+<div nz-row nzJustify="center" style="min-height: 100vh; margin-top: 120px;">
+  <div nz-col nzXXl="18" nzXl="18" nzLg="20" nzSpan="22">
+    <div nz-row [nzGutter]="[12, 12]" class="bg-white p-2 rounded">
+      <div nz-col nzXXl="6" nzXl="6" nzLg="8">
+        <ul nz-menu nzMode="inline">
+          <li nzSelected="true" nz-menu-item nzTitle="User" nzIcon="user" nzOpen>
+            <i nz-icon nzType="user"></i>
+            <span>Tài khoản</span>
+          </li>
+          <li nz-menu-item nzTitle="Góp ý" nzIcon="user" nzOpen>
+            <i nz-icon nzType="mail"></i>
+            <span>Góp ý</span>
+          </li>
+          <li nz-menu-item nzTitle="Hồ sơ bệnh nhân" nzIcon="user" nzOpen>
+            <i nz-icon nzType="profile" nzTheme="outline"></i>
+            <span>Hồ sơ bệnh nhân</span>
+          </li>
+          <li nz-submenu nzTitle="Cài đặt tài khoản" nzIcon="setting">
+            <ul>
+              <li nz-menu-item>
+                <i nz-icon nzType="reload" nzTheme="outline"></i>
+                <span>Đổi mật khẩu</span>
+              </li>
+              <li nz-menu-item>
+                <i nz-icon nzType="logout" nzTheme="outline"></i>
+                <span>Đăng xuất</span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div nz-col nzXXl="18" nzXl="18" nzLg="16" nzSpan="22">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

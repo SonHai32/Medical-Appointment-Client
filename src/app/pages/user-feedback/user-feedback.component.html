@@ -1,0 +1,25 @@
+<div nz-row nzAlign="middle" nzJustify="center">
+  <div nz-col nzXXl="18" nzXl="18" nzLg="20" nzSpan="22">
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="onSubmit()">
+      <nz-form-item class="m-0 p-0">
+        <nz-form-label nzSpan="24" class="m-0 p-0">
+          Tiêu đề
+        </nz-form-label>
+        <nz-form-control [nzErrorTip]="getErrorTooltip('title')">
+          <input formControlName="title" type="text" nz-input placeholder="Nhập tiêu đề" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="m-0 p-0">
+        <nz-form-label nzSpan="24" class="m-0 p-0">
+          Nội dung
+        </nz-form-label>
+        <nz-form-control [nzErrorTip]="getErrorTooltip('content')">
+          <textarea formControlName="content" type="text" nz-input placeholder="Nhập nội dung"> </textarea>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="mt-3" nzAlign="middle" nzJustify="end">
+        <button type="submit" nz-button nzType="primary">Gửi</button>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
