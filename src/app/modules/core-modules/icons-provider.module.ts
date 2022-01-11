@@ -29,6 +29,12 @@ import {
   FacebookOutline,
   GoogleOutline,
   FileProtectOutline,
+  ProfileOutline,
+  SettingOutline,
+  ReloadOutline,
+  ShoppingOutline,
+  LogoutOutline,
+  FieldNumberOutline,
 } from '@ant-design/icons-angular/icons';
 
 const icons = [
@@ -59,6 +65,12 @@ const icons = [
   FacebookOutline,
   GoogleOutline,
   FileProtectOutline,
+  ProfileOutline,
+  SettingOutline,
+  ReloadOutline,
+  ShoppingOutline,
+  LogoutOutline,
+  FieldNumberOutline,
 ];
 
 @NgModule({

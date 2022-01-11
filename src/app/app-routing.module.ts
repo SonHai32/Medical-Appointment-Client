@@ -25,6 +25,11 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'user',
+    loadChildren: () =>
+      import('./modules/core-modules/user.module').then((m) => m.UserModule),
+  },
+  {
     path: 'doctors',
     loadChildren: () =>
       import('./modules/core-modules/doctors.module').then(

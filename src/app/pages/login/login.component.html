@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div nz-row nzAlign="middle" nzJustify="center" class="p-3 vh-100">
   <div nz-col nzXXl="6" nzXl="8" nzLg="12" nzMd="14" nzSpan="24" class="p-4 bg-white rounded">
     <h3 nz-typography class="ant-text-primary text-center">Đăng nhập</h3>
@@ -56,62 +55,3 @@
     </form>
   </div>
 </div>
-=======
-<div nz-row nzAlign="middle" nzJustify="center" class="p-3 vh-100">
-  <div nz-col nzXXl="6" nzXl="8" nzLg="12" nzMd="14" nzSpan="24" class="p-4 bg-white rounded">
-    <h3 nz-typography class="ant-text-primary text-center">Đăng nhập</h3>
-    <form nz-form [formGroup]="validateForm" (ngSubmit)="formSumbit()">
-      <nz-form-item>
-        <nz-form-control [nzErrorTip]="getErrorTooltips('username')">
-          <nz-input-group nzPrefixIcon="user">
-            <input formControlName="username" type="text" nz-input placeholder="Username" />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control [nzErrorTip]="getErrorTooltips('password')">
-          <nz-input-group nzPrefixIcon="lock">
-            <input formControlName="password" type="password" nz-input placeholder="Password" />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-      <div nz-row class="my-2" nzJustify="center">
-        <div nz-col [nzSpan]="12">
-          <label nz-checkbox>
-            <span>Nhớ tài khoản</span>
-          </label>
-        </div>
-        <div nz-col [nzSpan]="12" class="d-flex justify-content-end">
-          <a>Quên mật khẩu ?</a>
-        </div>
-        <div nz-col nzSpan="24" class="d-flex justify-content-center align-items-center my-2">
-          <button type="submit" nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Đăng
-            nhập</button>
-        </div>
-        <div nz-col nzSpan="24" class="d-flex justify-content-end">
-          <a nz-typographys>Bạn chưa có tài khoản ? Đăng ký</a>
-        </div>
-        <div nz-col nzSpan="24">
-          <div style="font-size: 24px;" nz-row nzJustify="center" [nzGutter]="[24, 0]">
-            <div nz-col>
-              <a href="#">
-                <i nz-icon nzType="facebook" nzTheme="outline"></i>
-              </a>
-            </div>
-            <div nz-col>
-              <a href="#">
-                <i nz-icon nzType="google" nzTheme="outline"></i>
-              </a>
-            </div>
-            <div nz-col>
-              <a href="#">
-                <i nz-icon nzType="phone" nzTheme="outline"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
->>>>>>> origin/main

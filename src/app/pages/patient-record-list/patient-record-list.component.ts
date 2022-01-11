@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientRecordListComponent implements OnInit {
 
+  panels = [1, 2]
   constructor() { }
 
   ngOnInit(): void {

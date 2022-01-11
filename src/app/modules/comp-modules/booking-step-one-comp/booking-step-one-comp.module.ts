@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,17 +10,3 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class BookingStepOneCompModule { }
-=======
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
-
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
-})
-export class BookingStepOneCompModule { }
->>>>>>> origin/main

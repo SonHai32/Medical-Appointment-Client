@@ -1,1 +1,71 @@
-<p>patient-record works!</p>
+<div nz-row nzAlign="middle" nzJustify="center">
+  <div nz-col nzXXl="18" nzXl="18" nzLg="20" nzSpan="22">
+    <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+      <div nz-row nzJustify="center" nzGutter="16">
+        <div nz-col nzXXl="8" nzXl="8" nzLg="8" nzSpan="24">
+          <nz-form-item class="m-0 p-0">
+            <nz-form-label nzRequired="true" nzSpan="24" class="m-0 p-0">
+              Họ
+            </nz-form-label>
+            <nz-form-control>
+              <input type="text" nz-input placeholder="Nhập họ" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzXXl="8" nzXl="8" nzLg="8" nzSpan="24">
+          <nz-form-item class="m-0 p-0">
+            <nz-form-label class="m-0 p-0" nzSpan="24">
+              Tên đệm
+            </nz-form-label>
+            <nz-form-control [nzErrorTip]="getErrorTooltips('emailAddress')">
+              <input formControlName="emailAddress" type="text" nz-input placeholder="Nhập tên đệm" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzXXl="8" nzXl="8" nzLg="8" nzSpan="24">
+          <nz-form-item class="m-0 p-0">
+            <nz-form-label [nzRequired]="true" nzSpan="24" class="m-0 p-0">
+              Tên
+            </nz-form-label>
+            <nz-form-control [nzErrorTip]="getErrorTooltips('phoneNumber')">
+                <input formControlName="phoneNumber" type="text" nz-input placeholder="Nhập tên" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <nz-form-item class="m-0 p-0">
+        <nz-form-control [nzErrorTip]="getErrorTooltips('address')">
+          <nz-form-label nzSpan="24" class="m-0 p-0">
+            Địa chỉ
+          </nz-form-label>
+          <nz-input-group nzPrefixIcon="environment">
+            <input formControlName="address" type="text" nz-input placeholder="Địa chỉ">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="m-0 p-0">
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-form-label nzSpan="24" class="m-0 p-0">
+            Ngày khởi tạo
+          </nz-form-label>
+          <nz-input-group nzPrefixIcon="calendar">
+            <input [disabled]="true" type="text" nz-input placeholder="Ngày khởi tạo">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-form-label nzSpan="24" class="m-0 p-0">
+            Tổng số hồ sơ
+          </nz-form-label>
+          <nz-input-group nzPrefixIcon="field-number">
+            <input [disabled]="true" type="text" nz-input placeholder="Tổng số hồ sơ">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nzAlign="middle" nzJustify="end">
+        <button nz-button nzType="primary">Cập nhật</button>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
