@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div style="min-height: 100vh; padding-top: 80px;" nz-row nzAlign="middle" nzJustify="center">
   <div nz-col nzXXl="16" nzXl="18" nzLg="18" nzMd="20" nzSpan="24" class="p-2">
     <div nz-row nzAlign="middle" nzJustify="start" [nzGutter]="[12, 12]">
@@ -42,3 +43,49 @@
     </div>
   </div>
 </div>
+=======
+<div style="min-height: 100vh; padding-top: 80px;" nz-row nzAlign="middle" nzJustify="center">
+  <div nz-col nzXXl="16" nzXl="18" nzLg="18" nzMd="20" nzSpan="24" class="p-2">
+    <div nz-row nzAlign="middle" nzJustify="start" [nzGutter]="[12, 12]">
+      <div nz-col nzSpan="24" *ngFor="let item of data">
+        <nz-card nzHoverable="true" [nzTitle]="item.name" [nzExtra]="extraTemplate">
+          <div nz-row [nzGutter]="[12, 12]">
+            <div nz-col>
+              <img nz-image width="200px" height="200px" [nzSrc]="item.image" alt="" />
+            </div>
+            <div nz-col>
+              <h4 nz-typography>{{item.name}}</h4>
+              <p nz-typography>Địa chỉ: &emsp; {{item.place}}</p>
+              <p nz-typography>Thời gian làm việc</p>
+              <nz-table #basicTable [nzData]="hospitalTime" nzShowPagination="false" nzBordered="true"
+                nzOuterBordered="true">
+                <thead>
+                  <tr>
+                    <th nzAlign="center" *ngFor="let item of basicTable.data">
+                      {{item.dayName}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td nzAlign="center" *ngFor="let item of basicTable.data">
+                      <span nz-typography nzType="secondary">
+                        {{item.startHour + ":" + item.startMinute
+                        + " - " +
+                        item.endHour + ":" + item.endMinute}}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </nz-table>
+            </div>
+          </div>
+        </nz-card>
+        <ng-template #extraTemplate>
+          <button nz-button class="d-flex align-items-center" nzType="text" nzShape="round"><i nz-icon
+              nzType="arrow-right" nzTheme="outline"></i></button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+>>>>>>> origin/main

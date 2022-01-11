@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div nz-row nzAlign="middle" nzJustify="start">
   <div nz-col nzSpan="24" class="p-2">
     <h5 nz-typography>Chọn ngày khám / chuyên khoa</h5>
@@ -54,3 +55,61 @@
     <button nz-button nzType="primary">Tiếp tục</button>
   </div>
 </div>
+=======
+<div nz-row nzAlign="middle" nzJustify="start">
+  <div nz-col nzSpan="24" class="p-2">
+    <h5 nz-typography>Chọn ngày khám / chuyên khoa</h5>
+  </div>
+  <div nz-col nzSpan="24">
+    <nz-calendar [nzDisabledDate]="disableDate" [(ngModel)]="date" [(nzMode)]="mode"
+      (nzPanelChange)="panelChange($event)"></nz-calendar>
+  </div>
+  <div nz-col nzSpan="24" class="p-3">
+    <h5 nz-typography>Lựa chọn chuyên khoa khám</h5>
+  </div>
+  <div nz-col nzSpan="24" class="p-3 bg-white">
+    <div nz-row nzAlign="middle" nzJustify="space-between" [nzGutter]="[12, 12]">
+      <div nz-col>
+        <h6 nz-typography class="m-0 me-2 p-0">Tìm kiếm chuyên khoa</h6>
+      </div>
+      <div nz-col nzXXl="12" nzXl="12" nzLg="16" nzMd="18" nzSpan="24">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input type="text" nz-input placeholder="input search text" />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <i nz-icon nzType="search"></i>
+        </ng-template>
+      </div>
+      <div nz-col>
+        <button nz-button nzType="default">Đóng</button>
+      </div>
+    </div>
+  </div>
+  <div nz-col nzSpan="24" class="bg-white p-3">
+    <cdk-virtual-scroll-viewport itemSize="73" class="demo-infinite-container w-100" style="height: 50vh;">
+      <nz-list>
+        <nz-list-item *ngFor="let item of data">
+          <div nz-row nzAlign="middle" nzJustify="center" class="border-bottom py-3 w-100">
+            <div nz-col nzSpan="8">
+              <h6 class="m-0 p-0" nz-typography nzType="secondary">
+                Tên chuyên khoa
+              </h6>
+            </div>
+            <div nz-col nzSpan="8" class="d-flex justify-content-center">
+              <h6 class="m-0 p-0" nz-typography nzType="secondary">
+                Giá chuyên khoa
+              </h6>
+            </div>
+            <div nz-col nzSpan="8" class="d-flex justify-content-end">
+              <button nz-button nzType="primary" class="me-2"> Chọn </button>
+            </div>
+          </div>
+        </nz-list-item>
+      </nz-list>
+    </cdk-virtual-scroll-viewport>
+  </div>
+  <div nz-col nzSpan="24" class="p-3 bg-white d-flex justify-content-end">
+    <button nz-button nzType="primary">Tiếp tục</button>
+  </div>
+</div>
+>>>>>>> origin/main
