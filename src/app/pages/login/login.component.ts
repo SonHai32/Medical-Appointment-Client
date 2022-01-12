@@ -1,4 +1,7 @@
+import { AuthActions } from './../../state-management/actions/auth.action';
+import { AuthService } from './../../services/auth-service/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import {
   FormBuilder,
   FormControl,
@@ -13,7 +16,11 @@ import {
 })
 export class LoginComponent implements OnInit {
   validateForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private authSewrvice: AuthService,
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -65,5 +72,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login(username: string, password: string) {}
+  login(username: string, password: string) {
+    this.store.dispatch(AuthActions.LoginAction({ username, password }));
+  }
 }
