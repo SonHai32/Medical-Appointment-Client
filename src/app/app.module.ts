@@ -15,6 +15,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageCompModule } from './modules/comp-modules/main-page-comp/main-page-comp.module';
 import { HeaderCompModule } from './modules/comp-modules/header-comp/header-comp.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { authReducer } from './state-management/reducers/auth.reducer';
+import { AuthEffect } from './state-management/effects/auth.effect';
+import { environment } from 'src/environments/environment';
 
 registerLocaleData(vi);
 
@@ -31,6 +37,15 @@ registerLocaleData(vi);
     HeaderCompModule,
     LoginCompModule,
     RegisterCompModule,
+    StoreModule.forRoot({
+      auth: authReducer,
+    }),
+    EffectsModule.forRoot([AuthEffect]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+      autoPause: true,
+    }),
   ],
   providers: [{ provide: NZ_I18N, useValue: vi_VN }],
   bootstrap: [AppComponent],
