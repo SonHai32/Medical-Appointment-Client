@@ -1,7 +1,8 @@
+<h5 nz-typography>DANH SÁCH HỒ SƠ</h5>
 <nz-collapse nzBordered="false" nzExpandIconPosition="right">
   <nz-collapse-panel [nzHeader]="patientRecord">
     <p style="margin:0;">
-      <app-patient-record></app-patient-record>
+      <app-patient-record [patient-record]="'test'"></app-patient-record>
     </p>
   </nz-collapse-panel>
 </nz-collapse>

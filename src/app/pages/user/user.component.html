@@ -3,23 +3,31 @@
     <div nz-row [nzGutter]="[12, 12]" class="bg-white p-2 rounded">
       <div nz-col nzXXl="6" nzXl="6" nzLg="8">
         <ul nz-menu nzMode="inline">
-          <li nzSelected="true" nz-menu-item nzTitle="User" nzIcon="user" nzOpen>
+          <li nzSelected="true" nzMatchRouter="true" nz-menu-item nzTitle="User" nzIcon="user" nzOpen>
             <i nz-icon nzType="user"></i>
-            <span>Tài khoản</span>
+            <a [routerLink]="['info']" class="mx-2">Tài khoản</a>
           </li>
-          <li nz-menu-item nzTitle="Góp ý" nzIcon="user" nzOpen>
+          <li nzMatchRouter="true" nz-menu-item nzTitle="Góp ý" nzIcon="user" nzOpen>
             <i nz-icon nzType="mail"></i>
-            <span>Góp ý</span>
+            <a [routerLink]="['feedback']" class="mx-2">Góp ý</a>
           </li>
-          <li nz-menu-item nzTitle="Hồ sơ bệnh nhân" nzIcon="user" nzOpen>
-            <i nz-icon nzType="profile" nzTheme="outline"></i>
-            <span>Hồ sơ bệnh nhân</span>
+          <li nz-submenu nzTitle="Hồ sơ bệnh nhân" nzIcon="profile">
+            <ul>
+              <li nzMatchRouter="true" nz-menu-item>
+                <i nz-icon nzType="ordered-list" nzTheme="outline"></i>
+                <a [routerLink]="['patient-records']" class="mx-2">Danh sách hồ sơ</a>
+              </li>
+              <li nzMatchRouter="true" nz-menu-item>
+                <i nz-icon nzType="user-add" nzTheme="outline"></i>
+                <a [routerLink]="['new-patient-record']" class="mx-2">Thêm hồ sơ</a>
+              </li>
+            </ul>
           </li>
           <li nz-submenu nzTitle="Cài đặt tài khoản" nzIcon="setting">
             <ul>
-              <li nz-menu-item>
+              <li nzMatchRouter nz-menu-item>
                 <i nz-icon nzType="reload" nzTheme="outline"></i>
-                <span>Đổi mật khẩu</span>
+                <a [routerLink]="['change-password']" class="mx-2">Đổi mật khẩu</a>
               </li>
               <li nz-menu-item>
                 <i nz-icon nzType="logout" nzTheme="outline"></i>

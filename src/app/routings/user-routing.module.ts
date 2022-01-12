@@ -1,3 +1,5 @@
+import { ChangePasswordComponent } from './../pages/change-password/change-password.component';
+import { PatientRecordCreateComponent } from './../pages/patient-record-create/patient-record-create.component';
 import { PatientRecordListComponent } from './../pages/patient-record-list/patient-record-list.component';
 import { PatientRecordComponent } from './../pages/patient-record/patient-record.component';
 import { UserFeedbackComponent } from './../pages/user-feedback/user-feedback.component';
@@ -28,6 +30,11 @@ const routes: Routes = [
         path: 'patient-records',
         component: PatientRecordListComponent,
       },
+      {
+        path: 'new-patient-record',
+        component: PatientRecordCreateComponent,
+      },
+      { path: 'change-password', component: ChangePasswordComponent },
     ],
   },
 ];

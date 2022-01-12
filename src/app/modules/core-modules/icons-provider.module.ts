@@ -35,6 +35,9 @@ import {
   ShoppingOutline,
   LogoutOutline,
   FieldNumberOutline,
+  OrderedListOutline,
+  UserAddOutline,
+  RedoOutline,
 } from '@ant-design/icons-angular/icons';
 
 const icons = [
@@ -71,6 +74,9 @@ const icons = [
   ShoppingOutline,
   LogoutOutline,
   FieldNumberOutline,
+  OrderedListOutline,
+  UserAddOutline,
+  RedoOutline,
 ];
 
 @NgModule({
