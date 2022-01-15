@@ -75,16 +75,16 @@ export class AuthEffect {
     this.action$.pipe(
       ofType(AuthActions.GetUserAuthAction),
       mergeMap((action) => this.authService.getAuthUser()),
-      map((res: any) => {
-        if (res.status === 'SUCCESS')
-          return AuthActions.GetUserAuthSuccessAction({
-            user: res.accessToken as User,
-          });
-        else
-          return AuthActions.GetUserAuthFailAction({
-            message: res.message as string,
-          });
-      })
+      map((user: User) => {
+        return AuthActions.GetUserAuthSuccessAction({ user });
+      }),
+      catchError((error) =>
+        of(
+          AuthActions.GetUserAuthFailAction({
+            message: (error as Error).message,
+          })
+        )
+      )
     )
   );
 }

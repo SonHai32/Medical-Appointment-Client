@@ -1,3 +1,7 @@
+import { User } from 'src/app/models/user.model';
+import { take } from 'rxjs/operators';
+import { AuthSelector } from './../../state-management/selectors/auth.seletor';
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -5,6 +9,8 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
   selector: 'app-user-info',
@@ -13,35 +19,55 @@ import {
 })
 export class UserInfoComponent implements OnInit {
   validateForm!: FormGroup;
+  currentUser!: User;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private datePipe: DatePipe,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
   }
 
   initForm() {
-    this.validateForm = this.fb.group({
-      username: new FormControl(null),
-      emailAddress: new FormControl(null, [
-        Validators.required,
-        Validators.email,
-      ]),
-      phoneNumber: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(10),
-        Validators.pattern('[0-9]{6,10}'), //TODO check phoneNumber mactching string as number between 6-10 digit
-      ]),
-      address: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(240),
-        Validators.pattern('\\s'), //TODO check white space
-      ]),
-      createdAt: new FormControl(null),
-      totalPatientRecord: new FormControl(null),
-    });
+    this.store
+      .select(AuthSelector.UserSelector)
+      .pipe(take(1))
+      .subscribe((user) => {
+        if (user) {
+          this.currentUser = user;
+          this.validateForm = this.fb.group({
+            username: new FormControl({ value: user.username, disabled: true }),
+            emailAddress: new FormControl(user.emailAddress, [
+              Validators.required,
+              Validators.email,
+            ]),
+            phoneNumber: new FormControl(
+              user.phoneNumber ? user.phoneNumber : '',
+              [
+                Validators.required,
+                Validators.minLength(6),
+                Validators.maxLength(10),
+                Validators.pattern('[0-9]{6,10}'), //TODO check phoneNumber mactching string as number between 6-10 digit
+              ]
+            ),
+            address: new FormControl(user.address ? user.address : '', [
+              Validators.minLength(10),
+              Validators.maxLength(240),
+              Validators.pattern('\\s'), //TODO check white space
+            ]),
+            createdAt: new FormControl({
+              value: this.datePipe
+                .transform(user.createdAt, 'dd/MM/yyyy')
+                ?.toString(),
+              disabled: true,
+            }),
+          });
+        }
+      });
   }
 
   getErrorTooltips(
@@ -81,6 +107,19 @@ export class UserInfoComponent implements OnInit {
 
   submitForm() {
     if (this.validateForm.valid) {
+      if (this.currentUser) {
+        let updateUser = this.currentUser;
+
+        const emailAddress = this.validateForm.controls['emailAddress'].value;
+        const phoneNumber = this.validateForm.controls['phoneNumber'].value;
+        const address = this.validateForm.controls['address'].value;
+
+        updateUser = { ...updateUser, emailAddress, phoneNumber, address };
+
+        this.userService
+          .updateUser(updateUser)
+          .subscribe((val) => console.log(val));
+      }
     } else {
       this.displayValidateForm();
     }

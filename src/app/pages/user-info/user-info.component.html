@@ -1,14 +1,14 @@
 <h5 nz-typography>THÔNG TIN TÀI KHOẢN</h5>
 <div nz-row nzAlign="middle" nzJustify="center">
   <div nz-col nzXXl="18" nzXl="18" nzLg="20" nzSpan="22">
-    <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+    <form *ngIf="validateForm" nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item class="m-0 p-0">
         <nz-form-control>
           <nz-form-label nzSpan="24" class="m-0 p-0">
             Tên tài khoản
           </nz-form-label>
           <nz-input-group nzPrefixIcon="user">
-            <input disabled type="text" nz-input placeholder="Tên tài khoản" />
+            <input formControlName="username" [disabled]="true" type="text" nz-input placeholder="Tên tài khoản" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -48,21 +48,11 @@
             Ngày khởi tạo
           </nz-form-label>
           <nz-input-group nzPrefixIcon="calendar">
-            <input [disabled]="true" type="text" nz-input placeholder="Ngày khởi tạo">
+            <input formControlName="createdAt" [disabled]="true" type="text" nz-input placeholder="Ngày khởi tạo">
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Password!">
-          <nz-form-label nzSpan="24" class="m-0 p-0">
-            Tổng số hồ sơ
-          </nz-form-label>
-          <nz-input-group nzPrefixIcon="field-number">
-            <input [disabled]="true" type="text" nz-input placeholder="Tổng số hồ sơ">
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item nzAlign="middle" nzJustify="end">
+      <nz-form-item class="mt-3" nzAlign="middle" nzJustify="end">
         <button nz-button nzType="primary">Cập nhật</button>
       </nz-form-item>
     </form>

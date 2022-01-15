@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import {
   HttpEvent,
   HttpHandler,
+  HttpHeaders,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
@@ -42,25 +43,37 @@ export class HttpJwtIntercepter implements HttpInterceptor {
       req = req.clone({
         withCredentials: true,
       });
-    } else if (
-      req.method === 'DELETE' ||
-      req.method === 'PUT' ||
-      req.method === 'POST' ||
-      req.method === 'PATCH' ||
-      (req.url.endsWith('users') && req.method === 'GET') ||
-      (req.url.endsWith('product-groups') && req.method === 'GET')
-    ) {
+    } else if (req.url.endsWith('getUser')) {
       return this.store.select(AuthSelector.TokenSelector).pipe(
         mergeMap((token: AuthToken | null) => {
           req = req.clone({
             setHeaders: {
-              Authorization: `Bearer ${token?.accessToken}`,
+              authorization: `Bearer ${token?.accessToken}`,
             },
           });
           return customNextHandle(req);
         })
       );
     }
+    //  else if (
+    //   req.method === 'DELETE' ||
+    //   req.method === 'PUT' ||
+    //   req.method === 'POST' ||
+    //   req.method === 'PATCH' ||
+    //   (req.url.endsWith('users') && req.method === 'GET') ||
+    //   (req.url.endsWith('product-groups') && req.method === 'GET')
+    // ) {
+    //   return this.store.select(AuthSelector.TokenSelector).pipe(
+    //     mergeMap((token: AuthToken | null) => {
+    //       req = req.clone({
+    //         setHeaders: {
+    //           Authorization: `Bearer ${token?.accessToken}`,
+    //         },
+    //       });
+    //       return customNextHandle(req);
+    //     })
+    //   );
+    // }
     return customNextHandle(req);
   }
 }
