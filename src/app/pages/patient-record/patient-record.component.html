@@ -178,6 +178,8 @@
         </nz-form-control>
       </nz-form-item>
       <nz-form-item class="mt-3" nzAlign="middle" nzJustify="end">
+        <button *ngIf="patientRecord" (click)="selectPatientRecord()" type="reset" nz-button nzType="primary"
+          nzDanger="true" class="mx-2">Đăng ký lịch khám</button>
         <button *ngIf="patientRecord" type="reset" nz-button nzType="dashed" nzDanger="true" class="mx-2">Xoá</button>
         <button nz-button type="submit" nzType="primary">{{patientRecord ? 'Cập nhật' : 'Thêm'}}</button>
       </nz-form-item>

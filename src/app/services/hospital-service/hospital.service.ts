@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class HospitalService {
-  private readonly apiUrl = environment.apiUrl + '/hospitals';
+  private readonly apiUrl = environment.apiUrl + '/hospital';
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Hospital[]> {

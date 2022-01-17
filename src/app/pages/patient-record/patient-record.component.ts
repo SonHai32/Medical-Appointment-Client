@@ -1,8 +1,6 @@
+import { PatientScheduleActions } from './../../state-management/actions/patient-schedule.action';
 import { PatientRecordService } from './../../services/patient-record-service/patient-record.service';
-import {
-  UserSelector,
-  AuthSelector,
-} from './../../state-management/selectors/auth.seletor';
+import { AuthSelector } from './../../state-management/selectors/auth.seletor';
 import { User } from 'src/app/models/user.model';
 import { Store } from '@ngrx/store';
 import { PatientRecord } from 'src/app/models/patient-record.model';
@@ -31,7 +29,7 @@ import {
   styleUrls: ['./patient-record.component.scss'],
 })
 export class PatientRecordComponent implements OnInit {
-  @Input('patient-record') patientRecord!: any;
+  @Input('patient-record') patientRecord: PatientRecord | null = null;
 
   currentUser!: User;
 
@@ -63,47 +61,83 @@ export class PatientRecordComponent implements OnInit {
 
   initForm() {
     this.validateForm = this.fb.group({
-      firstName: new FormControl(null, [
-        Validators.required,
-        Validators.maxLength(20),
-        whiteSpaceValidator,
-      ]),
-      middleName: new FormControl(null, [Validators.maxLength(20)]),
-      lastName: new FormControl(null, [
-        Validators.required,
-        Validators.maxLength(20),
-        whiteSpaceValidator,
-      ]),
-      emailAddress: new FormControl(null, [
-        Validators.required,
-        Validators.email,
-      ]),
-      phoneNumber: new FormControl(null, [
-        Validators.required,
-        phoneNumberValidator,
-        // Validators.pattern('[0-9]{6,10}'), //TODO check phoneNumber mactching string as number between 6-10 digit
-      ]),
-      citizenIdentification: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(9),
-        Validators.maxLength(12),
-        numberAsStringValidator,
-        whiteSpaceValidator,
-      ]),
-      address: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(240),
-        whiteSpaceValidator,
-      ]),
-      birthday: new FormControl(null, [Validators.required]),
-      gender: new FormControl(null, [Validators.required]),
+      firstName: new FormControl(
+        this.patientRecord ? this.patientRecord.firstName : null,
+        [Validators.required, Validators.maxLength(20), whiteSpaceValidator]
+      ),
+      middleName: new FormControl(
+        this.patientRecord ? this.patientRecord.middleName : null,
+        [Validators.maxLength(20)]
+      ),
+      lastName: new FormControl(
+        this.patientRecord ? this.patientRecord.lastName : null,
+        [Validators.required, Validators.maxLength(20), whiteSpaceValidator]
+      ),
+      emailAddress: new FormControl(
+        this.patientRecord ? this.patientRecord.address : null,
+        [Validators.required, Validators.email]
+      ),
+      phoneNumber: new FormControl(
+        this.patientRecord ? this.patientRecord.phoneNumber : null,
+        [
+          Validators.required,
+          phoneNumberValidator,
+          // Validators.pattern('[0-9]{6,10}'), //TODO check phoneNumber mactching string as number between 6-10 digit
+        ]
+      ),
+      citizenIdentification: new FormControl(
+        this.patientRecord ? this.patientRecord.citizenIdentification : null,
+        [
+          Validators.required,
+          Validators.minLength(9),
+          Validators.maxLength(12),
+          numberAsStringValidator,
+          whiteSpaceValidator,
+        ]
+      ),
+      address: new FormControl(
+        this.patientRecord ? this.patientRecord.address : null,
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(240),
+          whiteSpaceValidator,
+        ]
+      ),
+      birthday: new FormControl(
+        this.patientRecord ? this.patientRecord.birthday : null,
+        [Validators.required]
+      ),
+      gender: new FormControl(
+        this.patientRecord ? this.patientRecord.gender.id : null,
+        [Validators.required]
+      ),
       age: new FormControl({ value: null, disabled: true }),
-      job: new FormControl(null, [Validators.maxLength(32)]),
+      job: new FormControl(this.patientRecord ? this.patientRecord.job : null, [
+        Validators.maxLength(32),
+      ]),
       province: new FormControl(null, [Validators.required]),
       district: new FormControl(null, [Validators.required]),
       ward: new FormControl(null, [Validators.required]),
     });
+
+    if (this.patientRecord) {
+      this.placeService
+        .getWardToProvinceList(this.patientRecord.ward)
+        .subscribe((res) => {
+          this.listProvince = res[2];
+          this.listDistrict = res[1];
+          this.listWard = res[0];
+        });
+
+      this.validateForm.controls['province'].setValue(
+        this.patientRecord.ward.district.province.id
+      );
+      this.validateForm.controls['district'].setValue(
+        this.patientRecord.ward.district.id
+      );
+      this.validateForm.controls['ward'].setValue(this.patientRecord.ward.id);
+    }
   }
 
   getErrorTooltips(
@@ -333,5 +367,15 @@ export class PatientRecordComponent implements OnInit {
         this.currentUser = user;
       }
     });
+  }
+
+  selectPatientRecord() {
+    if (this.patientRecord) {
+      this.store.dispatch(
+        PatientScheduleActions.selectPatientRecordAction({
+          patientRecord: this.patientRecord,
+        })
+      );
+    }
   }
 }

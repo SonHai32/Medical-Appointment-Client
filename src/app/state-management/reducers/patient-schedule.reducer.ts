@@ -22,5 +22,18 @@ export const patientScheduleReducer = createReducer(
     doctor: null,
     shift: null,
     specialList: null,
-  }))
+  })),
+  on(
+    PatientScheduleActions.selectPatientRecordAction,
+    (state, { patientRecord }) => ({
+      ...state,
+      patientRecordSeleted: patientRecord,
+    })
+  ),
+  on(PatientScheduleActions.checkPatientRecoredFromLocalStorage, (state) => ({
+    ...state,
+  })),
+  on(PatientScheduleActions.setPatientSchedule, (state, { data }) => ({
+    ...data,
+  })),
 );
