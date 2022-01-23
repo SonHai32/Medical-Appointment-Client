@@ -8,14 +8,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PatientRecordService {
-  private readonly apiUrl = environment.apiUrl + "/patient-record";
+  private readonly apiUrl = environment.apiUrl + '/patient-record';
 
   constructor(private http: HttpClient) {}
 
-  add(patientRecord: PatientRecord){
-    return this.http.post(this.apiUrl, {...patientRecord}).pipe(take(1))
+  add(patientRecord: PatientRecord) {
+    return this.http.post(this.apiUrl, { ...patientRecord }).pipe(take(1));
   }
-  getAll(){
-    return this.http.get<PatientRecord[]>(this.apiUrl).pipe(take(1))
+  getAll() {
+    return this.http.get<PatientRecord[]>(this.apiUrl).pipe(take(1));
+  }
+  deleteOne(id: string) {
+    return this.http.delete<any>(`${this.apiUrl}?id=${id}`);
   }
 }

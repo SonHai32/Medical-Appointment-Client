@@ -18,30 +18,28 @@ export class AuthService {
   constructor(private http: HttpClient, private store: Store) {}
 
   login(username: string, password: string): Observable<AuthToken> {
-    return this.http.post<AuthToken>(
-      `${this.apiUrl}/login`,
-      {
-        username,
-        password,
-      },
-      { withCredentials: true }
-    );
+    return this.http.post<AuthToken>(`${this.apiUrl}/login`, {
+      username,
+      password,
+    });
   }
 
   refreshToken(): Observable<AuthToken> {
-    return this.http.get<AuthToken>(`${this.apiUrl}/refreshToken`).pipe(
-      map((token) => {
-        if (token) {
-          token.expiresIn = new Date(token.expiresIn);
-          const expiresOffset = token.expiresIn.getTime() - Date.now();
-          this.refreshTokenTimeOut = setTimeout(
-            () => this.store.dispatch(AuthActions.CheckAuthAction()),
-            expiresOffset
-          );
-        }
-        return token;
-      })
-    );
+    return this.http
+      .get<AuthToken>(`${this.apiUrl}/refreshToken`, { withCredentials: true })
+      .pipe(
+        map((token) => {
+          if (token) {
+            token.expiresIn = new Date(token.expiresIn);
+            const expiresOffset = token.expiresIn.getTime() - Date.now();
+            this.refreshTokenTimeOut = setTimeout(
+              () => this.store.dispatch(AuthActions.CheckAuthAction()),
+              expiresOffset
+            );
+          }
+          return token;
+        })
+      );
   }
 
   getAuthUser(): Observable<User> {
