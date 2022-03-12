@@ -1,3 +1,4 @@
+import { PatientSchedule } from './patient-schedule.model';
 import { User } from 'src/app/models/user.model';
 import { Gender } from './gender.model';
 import PatientRelative from './patient-relative.model';
@@ -12,11 +13,12 @@ export interface PatientRecord {
   emailAddress: string;
   citizenIdentification: string;
   birthday: Date;
-  address: string,
+  address: string;
   age: number;
   job?: string;
   gender: Gender;
   ward: Ward;
   patientRelative?: PatientRelative;
   user: User;
+  patientSchedule?: PatientSchedule[];
 }

@@ -1,13 +1,37 @@
-<div style="min-height: 100vh; padding-top: 80px;" nz-row nzAlign="middle" nzJustify="center">
+<div class="hospital-container" nz-row nzAlign="middle" nzJustify="center">
   <div nz-col nzXXl="16" nzXl="18" nzLg="18" nzMd="20" nzSpan="24" class="p-2">
     <div nz-row nzAlign="middle" nzJustify="start" [nzGutter]="[12, 12]">
+      <div nz-col nzSpan="24">
+        <div nz-row nzAlign="middle" nzJustify="center" [nzGutter]="[8, 8]">
+          <div nz-col nzSpan="6" nzXXl="6" nzXl="6" nzLg="6" nzSpan="24">
+            <nz-select class="w-100" nzShowSearch nzAllowClear nzPlaceHolder="Lựa chọn khu vực"
+              [(ngModel)]="provinceSeleted">
+              <ng-container *ngFor="let item of provinceList">
+                <nz-option [nzLabel]="item.name" [nzValue]="item"></nz-option>
+              </ng-container>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="14" nzXXl="14" nzXl="14" nzLg="14" nzSpan="24">
+            <nz-input-group [nzPrefix]="searchPrefix">
+              <input nz-input type="text" class="w-100">
+              <ng-template #searchPrefix>
+                <i nz-icon nzType="search" nzTheme="outline"></i>
+              </ng-template>
+            </nz-input-group>
+          </div>
+          <div nz-col nzSpan="4" nzXXl="4" nzXl="4" nzLg="4" nzSpan="24">
+            <button nz-button nzBlock nzType="primary">Tìm kiếm</button>
+          </div>
+        </div>
+      </div>
       <ng-container *ngIf="hospitalList$ | async as hospitalList">
         <div nz-col nzSpan="24" *ngFor="let item of hospitalList">
           <nz-card nzHoverable="true" [nzTitle]="item.name" [nzExtra]="extraTemplate">
             <div nz-row [nzGutter]="[12, 12]">
               <div nz-col>
                 <img nz-image width="200px" height="200px"
-                  nzSrc="https://bvdkkvcuchi.vn/thumb/930x390/1/upload/hinhanh/4911100.jpg" alt="" />
+                  nzSrc="https://previews.123rf.com/images/elenabsl/elenabsl1602/elenabsl160200050/52961182-b%C3%A2timent-et-service-de-l-h%C3%B4pital-avec-des-m%C3%A9decins-travaillant-bureau-chirurgie-salle-ambulatoire-et.jpg?fj=1"
+                  alt="" />
               </div>
               <div nz-col>
                 <h4 nz-typography>{{item.name}}</h4>

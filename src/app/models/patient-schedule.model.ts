@@ -1,16 +1,17 @@
+import { HospitalService } from './hospital-service.model';
 import { Doctor } from './doctor.model';
 import { PatientRecord } from './patient-record.model';
-import { Service } from './service.model';
 
 export interface PatientSchedule {
   id?: string;
   createdAt: Date;
   dateBooking?: Date;
-  time?: number;
-  note: string | null;
+  time?: string;
+  note?: string | null;
   active: boolean;
-  healthStatu?: string;
+  room: string;
+  healthStatus?: string;
   patientRecord: PatientRecord;
   doctor: Doctor;
-  service: Service;
+  service: HospitalService;
 }

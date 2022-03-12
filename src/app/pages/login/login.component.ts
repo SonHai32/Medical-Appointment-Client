@@ -1,3 +1,5 @@
+import { AuthSelector } from './../../state-management/selectors/auth.seletor';
+import { Observable } from 'rxjs';
 import { AuthActions } from './../../state-management/actions/auth.action';
 import { AuthService } from './../../services/auth-service/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,6 +10,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-login',
@@ -16,14 +19,23 @@ import {
 })
 export class LoginComponent implements OnInit {
   validateForm!: FormGroup;
+  authLoading = false;
+
   constructor(
     private fb: FormBuilder,
     private authSewrvice: AuthService,
-    private store: Store
+    private store: Store,
+    private nzMessageService: NzMessageService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
+    this.store.select(AuthSelector.AuthStateSeletor).subscribe((val) => {
+      this.authLoading = val.isLoading;
+      if (val.hasError) {
+        this.nzMessageService.error(val.errorMessage ?? 'Có lỗi xảy ra');
+      }
+    });
   }
 
   initForm() {

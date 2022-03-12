@@ -21,6 +21,10 @@
                 <i nz-icon nzType="user-add" nzTheme="outline"></i>
                 <a [routerLink]="['new-patient-record']" class="mx-2">Thêm hồ sơ</a>
               </li>
+              <li nzMatchRouter="true" nz-menu-item>
+                <i nz-icon nzType="file-sync" nzTheme="outline"></i>
+                <a [routerLink]="['patient-schedule']" class="mx-2">Lịch khám</a>
+              </li>
             </ul>
           </li>
           <li nz-submenu nzTitle="Cài đặt tài khoản" nzIcon="setting">

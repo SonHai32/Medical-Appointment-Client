@@ -14,4 +14,6 @@ export class PatientScheduleService {
   addNewPatientSchedule(patientSchedule: PatientSchedule[]) {
     return this.http.post<any>(this.apiUrl, patientSchedule).pipe(take(1));
   }
+
+  getAllPatientSchedule(userId: string) {}
 }

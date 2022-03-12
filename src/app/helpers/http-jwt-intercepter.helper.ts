@@ -19,6 +19,8 @@ export class HttpJwtIntercepter implements HttpInterceptor {
   constructor(private store: Store) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
+    req = req.clone({ setHeaders: { 'Content-Type': 'application/json' } });
+
     const customNextHandle = (request: HttpRequest<any>) => {
       return next.handle(request).pipe(
         retryWhen((err) =>
@@ -37,12 +39,18 @@ export class HttpJwtIntercepter implements HttpInterceptor {
       );
     };
 
-    req = req.clone({ setHeaders: { 'Content-Type': 'application/json' } });
-
-    if (req.url.endsWith('refreshToken')) {
+    if (
+      req.url.endsWith('refreshToken') ||
+      req.url.endsWith('login') ||
+      req.url.endsWith('register') ||
+      req.url.endsWith('logout')
+    ) {
       req = req.clone({
         withCredentials: true,
       });
+
+      // return customNextHandle(req);
+      return next.handle(req);
     } else if (req.url.endsWith('getUser')) {
       return this.store.select(AuthSelector.TokenSelector).pipe(
         mergeMap((token: AuthToken | null) => {
@@ -74,6 +82,7 @@ export class HttpJwtIntercepter implements HttpInterceptor {
     //     })
     //   );
     // }
-    return customNextHandle(req);
+    // return customNextHandle(req);
+    return next.handle(req);
   }
 }

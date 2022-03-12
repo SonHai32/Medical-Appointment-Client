@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { FormsModule } from '@angular/forms';
 import { BookingStepTwoComponent } from './../../../components/booking/booking-step-two/booking-step-two.component';
@@ -15,6 +16,7 @@ import { IconsProviderModule } from '../../core-modules/icons-provider.module';
   declarations: [BookingStepTwoComponent],
   imports: [
     CommonModule,
+    RouterModule,
     NzGridModule,
     NzTypographyModule,
     NzCalendarModule,

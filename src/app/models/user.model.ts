@@ -1,3 +1,4 @@
+import { PatientRecord } from './patient-record.model';
 export interface User {
   id?: string;
   username?: string;
@@ -7,4 +8,5 @@ export interface User {
   emailAddress?: string;
   address?: string;
   createdAt?: Date;
+  patientRecord?: PatientRecord[];
 }

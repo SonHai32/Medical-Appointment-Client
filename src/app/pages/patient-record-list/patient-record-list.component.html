@@ -2,7 +2,7 @@
 <nz-collapse *ngIf="patientRecordList$ | async as patientRecordList" nzBordered="false" nzExpandIconPosition="right">
   <nz-collapse-panel *ngFor="let item of patientRecordList" [nzHeader]="patientRecord">
     <p style="margin:0;">
-      <app-patient-record [patient-record]="item"></app-patient-record>
+      <app-patient-record (onDelete)="onPatientRecordDelete($event)" [patient-record]="item"></app-patient-record>
     </p>
     <ng-template #patientRecord>
       <div nz-row nzAlign="middle" nzJustify="start" nzGutter="16">
@@ -10,9 +10,12 @@
           <nz-avatar [nzSize]="64" nzIcon="user" class="d-flex align-items-center justify-content-center"></nz-avatar>
         </div>
         <div nz-col>
-          <h6 nz-typography class="p-0 m-0">{{[item.firstName, item.middleName, item.lastName].join(" ") | uppercase}}</h6>
-          <p nz-typography class="m-0"><strong class="ant-text-primary">Ngày sinh: &emsp;</strong> {{item.birthday | date: 'dd/MM/yyyy'}} </p>
-          <p nz-typography class="m-0"><strong class="ant-text-primary">CMND/CCCD: &emsp;</strong>{{item.citizenIdentification}}</p>
+          <h6 nz-typography class="p-0 m-0">{{[item.firstName, item.middleName, item.lastName].join(" ") | uppercase}}
+          </h6>
+          <p nz-typography class="m-0"><strong class="ant-text-primary">Ngày sinh: &emsp;</strong> {{item.birthday |
+            date: 'dd/MM/yyyy'}} </p>
+          <p nz-typography class="m-0"><strong class="ant-text-primary">CMND/CCCD:
+              &emsp;</strong>{{item.citizenIdentification}}</p>
         </div>
       </div>
     </ng-template>

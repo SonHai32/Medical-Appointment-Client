@@ -1,3 +1,5 @@
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { Router } from '@angular/router';
 import { PatientScheduleActions } from './../../state-management/actions/patient-schedule.action';
 import { PatientRecordService } from './../../services/patient-record-service/patient-record.service';
 import { AuthSelector } from './../../state-management/selectors/auth.seletor';
@@ -11,7 +13,7 @@ import { District } from './../../models/district.model';
 import { Province } from './../../models/province.model';
 import { PlaceService } from './../../services/place-service/place.service';
 import { numberAsStringValidator } from './../../validators/input.validator';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -22,6 +24,7 @@ import {
   phoneNumberValidator,
   whiteSpaceValidator,
 } from 'src/app/validators/input.validator';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-patient-record',
@@ -30,6 +33,9 @@ import {
 })
 export class PatientRecordComponent implements OnInit {
   @Input('patient-record') patientRecord: PatientRecord | null = null;
+  @Output('onDelete') onItemDelete = new EventEmitter<string>();
+
+  btnSubmitLoading = false;
 
   currentUser!: User;
 
@@ -49,7 +55,9 @@ export class PatientRecordComponent implements OnInit {
     private placeService: PlaceService,
     private genderService: GenderService,
     private store: Store,
-    private patientRecordService: PatientRecordService
+    private patientRecordService: PatientRecordService,
+    private router: Router,
+    private nzMessageService: NzMessageService
   ) {}
 
   ngOnInit(): void {
@@ -74,7 +82,7 @@ export class PatientRecordComponent implements OnInit {
         [Validators.required, Validators.maxLength(20), whiteSpaceValidator]
       ),
       emailAddress: new FormControl(
-        this.patientRecord ? this.patientRecord.address : null,
+        this.patientRecord ? this.patientRecord.emailAddress : null,
         [Validators.required, Validators.email]
       ),
       phoneNumber: new FormControl(
@@ -88,7 +96,6 @@ export class PatientRecordComponent implements OnInit {
       citizenIdentification: new FormControl(
         this.patientRecord ? this.patientRecord.citizenIdentification : null,
         [
-          Validators.required,
           Validators.minLength(9),
           Validators.maxLength(12),
           numberAsStringValidator,
@@ -179,9 +186,7 @@ export class PatientRecordComponent implements OnInit {
           return 'Tên không thể là khoảng trắng';
         } else return '';
       case 'citizenIdentification':
-        if (control.hasError('required')) {
-          return 'Vui lòng nhập CMND hoặc CCCD';
-        } else if (
+        if (
           control.hasError('minlength') ||
           control.hasError('maxlength') ||
           control.hasError('number')
@@ -252,8 +257,10 @@ export class PatientRecordComponent implements OnInit {
     }
   }
 
-  async addNew() {
+  addNew() {
     if (this.currentUser) {
+      this.btnSubmitLoading = true;
+
       const v = (c: string): any => {
         return this.validateForm.controls[c].value;
       };
@@ -273,9 +280,20 @@ export class PatientRecordComponent implements OnInit {
         user: this.currentUser,
       };
 
-      this.patientRecordService.add(newPatientRecord).subscribe((res) => {
-        console.log(res);
-      });
+      this.patientRecordService.add(newPatientRecord).subscribe(
+        (res: any) => {
+          this.nzMessageService.info(res.message);
+          this.btnSubmitLoading = false;
+          setTimeout(
+            () => this.router.navigate(['/', 'user', 'patient-records']),
+            320
+          );
+        },
+        (error) => {
+          this.nzMessageService.error((error as HttpErrorResponse).error);
+          this.btnSubmitLoading = false;
+        }
+      );
     }
   }
 
@@ -375,6 +393,22 @@ export class PatientRecordComponent implements OnInit {
         PatientScheduleActions.selectPatientRecordAction({
           patientRecord: this.patientRecord,
         })
+      );
+      this.router.navigate(['../../hospital']);
+    }
+  }
+
+  deleteSubmit() {
+    //emitOutput
+    if (this.patientRecord && this.patientRecord.id) {
+      this.patientRecordService.deleteOne(this.patientRecord.id).subscribe(
+        (res) => {
+          this.nzMessageService.success(res.message);
+          this.onItemDelete.emit(this.patientRecord?.id);
+        },
+        (error) => {
+          this.nzMessageService.error((error as HttpErrorResponse).error);
+        }
       );
     }
   }

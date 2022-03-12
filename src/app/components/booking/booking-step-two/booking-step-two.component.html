@@ -3,54 +3,70 @@
     <h5 nz-typography>Chọn ngày khám / chuyên khoa</h5>
   </div>
   <div nz-col nzSpan="24">
-    <nz-calendar [nzDisabledDate]="disableDate" [(ngModel)]="date" [(nzMode)]="mode"
-      (nzPanelChange)="panelChange($event)"></nz-calendar>
+    <nz-calendar (nzSelectChange)="onDateSelectChange()" [nzDisabledDate]="disableDate" [(ngModel)]="bookingDate"
+      [(nzMode)]="mode" (nzPanelChange)="panelChange($event)"></nz-calendar>
   </div>
   <div nz-col nzSpan="24" class="p-3">
     <h5 nz-typography>Lựa chọn chuyên khoa khám</h5>
   </div>
   <div nz-col nzSpan="24" class="p-3 bg-white">
     <div nz-row nzAlign="middle" nzJustify="space-between" [nzGutter]="[12, 12]">
-      <div nz-col>
-        <h6 nz-typography class="m-0 me-2 p-0">Tìm kiếm chuyên khoa</h6>
-      </div>
-      <div nz-col nzXXl="12" nzXl="12" nzLg="16" nzMd="18" nzSpan="24">
+      <div nz-col nzSpan="24">
+        <span nz-typography class="m-0 me-2 p-0">Tìm kiếm chuyên khoa</span>
         <nz-input-group [nzSuffix]="suffixIconSearch">
-          <input type="text" nz-input placeholder="input search text" />
+          <input type="text" nz-input placeholder="Nhập chuyên khoa" />
         </nz-input-group>
         <ng-template #suffixIconSearch>
           <i nz-icon nzType="search"></i>
         </ng-template>
       </div>
-      <div nz-col>
-        <button nz-button nzType="default">Đóng</button>
+    </div>
+    <div nz-row nzAlign="middle" nzJustify="center" class="py-3 w-100">
+      <div nz-col nzSpan="8">
+        <h6 class="m-0 p-0" nz-typography>
+          Chuyên khoa
+        </h6>
+      </div>
+      <div nz-col nzSpan="8" class="d-flex justify-content-center">
+        <h6 class="m-0 p-0" nz-typography>
+          Giá tiền
+        </h6>
+      </div>
+      <div nz-col nzSpan="8" class="d-flex justify-content-end">
+        <h6 class="m-0 p-0" nz-typography>
+          Hành động
+        </h6>
+
       </div>
     </div>
   </div>
   <div nz-col nzSpan="24" class="bg-white p-3">
-    <cdk-virtual-scroll-viewport itemSize="73" class="demo-infinite-container w-100" style="height: 50vh;">
-      <nz-list>
-        <nz-list-item *ngFor="let item of data">
-          <div nz-row nzAlign="middle" nzJustify="center" class="border-bottom py-3 w-100">
-            <div nz-col nzSpan="8">
-              <h6 class="m-0 p-0" nz-typography nzType="secondary">
-                Tên chuyên khoa
-              </h6>
+    <ng-container *ngIf="listService | async as services">
+      <cdk-virtual-scroll-viewport itemSize="73" class="demo-infinite-container w-100" style="height: 50vh;">
+        <nz-list>
+          <nz-list-item *ngFor="let item of services">
+            <div nz-row nzAlign="middle" nzJustify="center" class="py-3 w-100">
+              <div nz-col nzSpan="8">
+                <h6 class="m-0 p-0" nz-typography>
+                  {{[item.name,item.specialist.name].join(" ") | uppercase}}
+                </h6>
+              </div>
+              <div nz-col nzSpan="8" class="d-flex justify-content-center">
+                <h6 class="m-0 p-0" nz-typography>
+                  {{item.price |currency: 'VND': 'symbol'}}
+                </h6>
+              </div>
+              <div nz-col nzSpan="8" class="d-flex justify-content-end">
+                <button nz-button nzType="primary" class="me-2" (click)="onHospitalServiceSelect(item)"> Chọn </button>
+              </div>
             </div>
-            <div nz-col nzSpan="8" class="d-flex justify-content-center">
-              <h6 class="m-0 p-0" nz-typography nzType="secondary">
-                Giá chuyên khoa
-              </h6>
-            </div>
-            <div nz-col nzSpan="8" class="d-flex justify-content-end">
-              <button nz-button nzType="primary" class="me-2"> Chọn </button>
-            </div>
-          </div>
-        </nz-list-item>
-      </nz-list>
-    </cdk-virtual-scroll-viewport>
+          </nz-list-item>
+        </nz-list>
+      </cdk-virtual-scroll-viewport>
+    </ng-container>
   </div>
   <div nz-col nzSpan="24" class="p-3 bg-white d-flex justify-content-end">
-    <button nz-button nzType="primary">Tiếp tục</button>
+    <button nz-button nzType="dashed" class="mx-2">Quay lại</button>
+    <button nz-button nzType="primary" [routerLink]="['../', 'step-3']">Tiếp tục</button>
   </div>
 </div>

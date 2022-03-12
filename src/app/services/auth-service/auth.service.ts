@@ -45,4 +45,8 @@ export class AuthService {
   getAuthUser(): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/getUser`).pipe(take(1));
   }
+
+  logOut(): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/logout`).pipe(take(1));
+  }
 }

@@ -1,3 +1,6 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzImageModule } from 'ng-zorro-antd/image';
@@ -22,6 +25,10 @@ import { CommonModule } from '@angular/common';
     NzCardModule,
     NzImageModule,
     NzTableModule,
+    NzSelectModule,
+    NzInputModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [HospitalListComponent],
 })

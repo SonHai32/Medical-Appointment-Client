@@ -37,7 +37,15 @@ import {
   FieldNumberOutline,
   OrderedListOutline,
   UserAddOutline,
+  FileTextOutline,
   RedoOutline,
+  FileSyncOutline,
+  FieldTimeOutline,
+  RightSquareOutline,
+  DollarOutline,
+  InfoCircleOutline,
+  InstagramOutline,
+  TwitterOutline,
 } from '@ant-design/icons-angular/icons';
 
 const icons = [
@@ -77,6 +85,15 @@ const icons = [
   OrderedListOutline,
   UserAddOutline,
   RedoOutline,
+  FileTextOutline,
+  FileSyncOutline,
+  FieldTimeOutline,
+  RightSquareOutline,
+  DollarOutline,
+  InfoCircleOutline,
+  InstagramOutline,
+  FacebookOutline,
+  TwitterOutline,
 ];
 
 @NgModule({

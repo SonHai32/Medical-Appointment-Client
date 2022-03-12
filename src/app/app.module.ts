@@ -1,3 +1,6 @@
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { InfoCompModule } from './modules/comp-modules/info-comp/info-comp.module';
+import { PatientScheduleEffect } from './state-management/effects/patient-schedule.effect';
 import { patientScheduleReducer } from './state-management/reducers/patient-schedule.reducer';
 import { HttpJwtIntercepter } from './helpers/http-jwt-intercepter.helper';
 import { RegisterCompModule } from './modules/comp-modules/register-comp/register-comp.module';
@@ -24,6 +27,7 @@ import { authReducer } from './state-management/reducers/auth.reducer';
 import { AuthEffect } from './state-management/effects/auth.effect';
 import { environment } from 'src/environments/environment';
 import { initializer } from './helpers/initializer.helper';
+import { ErrorCompModule } from './modules/comp-modules/error-comp/error-comp.module';
 
 registerLocaleData(vi);
 
@@ -35,14 +39,17 @@ registerLocaleData(vi);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NzMessageModule,
     MainPageCompModule,
     FooterCompModule,
     HeaderCompModule,
     LoginCompModule,
+    InfoCompModule,
     RegisterCompModule,
+    ErrorCompModule,
     StoreModule.forRoot({
       auth: authReducer,
-      patientSchedule: patientScheduleReducer
+      patientSchedule: patientScheduleReducer,
     }),
     EffectsModule.forRoot([AuthEffect]),
     StoreDevtoolsModule.instrument({

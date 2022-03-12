@@ -1,0 +1,33 @@
+<h5 nz-typography>DANH SÁCH LỊCH KHÁM </h5>
+<nz-collapse nzBordered="false" nzExpandIconPosition="right">
+  <ng-container *ngIf="patientScheduleList$ | async as patientScheduleList">
+    <nz-collapse-panel *ngFor="let item of patientScheduleList" [nzHeader]="patientRecord">
+      <p style="margin:0;">
+        <!-- <app-patient-record (onDelete)="onPatientRecordDelete($event)" [patient-record]="item"></app-patient-record> -->
+      </p>
+      <ng-template #patientRecord>
+        <div nz-row nzAlign="middle" nzJustify="start" nzGutter="16">
+          <div nz-col>
+            <nz-avatar [nzSize]="64" nzIcon="profile" class="d-flex align-items-center justify-content-center">
+            </nz-avatar>
+          </div>
+          <div nz-col>
+            <h6 nz-typography class="p-0 m-0">BỆNH NHÂN: {{[item.patientRecord.firstName, item.patientRecord.middleName,
+              item.patientRecord.lastName].join(" ") | uppercase}}
+            </h6>
+            <p nz-typography class="m-0"><strong class="ant-text-primary">Ngày khám: &emsp;</strong> {{item.dateBooking
+              |
+              date: 'dd/MM/yyyy'}} </p>
+            <p nz-typography class="m-0"><strong class="ant-text-primary">Phòng khám:
+                &emsp;</strong>{{item.room}}</p>
+            <p nz-typography class="m-0"><strong class="ant-text-primary">Giờ khám:
+                &emsp;</strong>{{item.time}}</p>
+            <p nz-typography class="m-0"><strong class="ant-text-primary">Chuyên khoa
+                &emsp;</strong>{{item.service.specialist.name}}</p>
+
+          </div>
+        </div>
+      </ng-template>
+    </nz-collapse-panel>
+  </ng-container>
+</nz-collapse>

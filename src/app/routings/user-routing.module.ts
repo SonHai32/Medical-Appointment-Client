@@ -1,3 +1,4 @@
+import { PatientScheduleComponent } from 'src/app/pages/patient-schedule/patient-schedule.component';
 import { ChangePasswordComponent } from './../pages/change-password/change-password.component';
 import { PatientRecordCreateComponent } from './../pages/patient-record-create/patient-record-create.component';
 import { PatientRecordListComponent } from './../pages/patient-record-list/patient-record-list.component';
@@ -35,6 +36,9 @@ const routes: Routes = [
         component: PatientRecordCreateComponent,
       },
       { path: 'change-password', component: ChangePasswordComponent },
+      {
+        path: 'patient-schedule', component: PatientScheduleComponent
+      }
     ],
   },
 ];

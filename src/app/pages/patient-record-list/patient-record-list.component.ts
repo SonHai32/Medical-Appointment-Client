@@ -19,4 +19,8 @@ export class PatientRecordListComponent implements OnInit {
   getPatientRecordList() {
     this.patientRecordList$ = this.patientRecordService.getAll();
   }
+
+  onPatientRecordDelete(id?: string) {
+    this.getPatientRecordList();
+  }
 }

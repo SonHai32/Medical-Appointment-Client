@@ -1,24 +1,99 @@
 <div style="min-height: 100vh; margin-top: 120px;" nz-row nzAlign="middle" nzJustify="center">
   <div nz-col nzXXl="20" nzXl="22" nzSpan="24" class="p-2 h-100">
     <div nz-row nzJustify="center" [nzGutter]="[12,12]">
-      <div nz-col nzXXl="6" nzXl="8" nzLg="8" nzMd="8" nzSpan="24" class="p-2">
+      <div *ngIf="patientRecoredSelected$ | async as patientRecordSelected" nz-col nzXXl="6" nzXl="8" nzLg="8" nzMd="8"
+        nzSpan="24" class="p-3">
         <div nz-row nzAlign="middle" nzJustify="center" [nzGutter]="[12,12]">
           <div nz-col nzXXl="18" nzXl="18" nzLg="20" nzMd="20" nzSpan="24" class="rounded bg-white p-2 my-2">
-            <h5 nz-typography class="m-0 p-0">Lam Son Hai</h5>
-            <p nz-typography nzType="secondary" class="p-0 m-0">Địa chỉ: Lorem ipsum dolor sit amet consectetur
-              adipisicing elit.
-              Assumenda odit ea delectus ipsam sed
+            <h5 nz-typography class="m-0 p-0">{{[patientRecordSelected.firstName, patientRecordSelected.middleName,
+              patientRecordSelected.lastName].join(" ") | uppercase}}</h5>
+            <p nz-typography nzType="secondary" class="p-0 m-0">Giới tính : {{patientRecordSelected.gender.name}}
+            <p nz-typography nzType="secondary" class="p-0 m-0">Tuổi : {{patientRecordSelected.age}}
+            <p nz-typography nzType="secondary" class="p-0 m-0">Ngày sinh : {{patientRecordSelected.birthday | date:
+              'dd/MM/yyyy'}}
+            <p nz-typography nzType="secondary" class="p-0 m-0">CMND/CCCD :
+              {{patientRecordSelected.citizenIdentification}}
             </p>
-            <p nz-typography nzType="secondary" class="p-0 m-0">Điện thoại: 02222222222</p>
+            <p nz-typography nzType="secondary" class="p-0 m-0">Điện thoại : {{patientRecordSelected.phoneNumber}}
+            <p nz-typography nzType="secondary" class="p-0 m-0">Email : {{patientRecordSelected.emailAddress}}
+            <p nz-typography nzType="secondary" class="p-0 m-0">Địa chỉ : {{patientRecordSelected.address}}
           </div>
           <div nz-col nzXXl="18" nzXl="18" nzLg="20" nzMd="20" nzSpan="24" class="rounded bg-white p-0 my-2">
             <h5 nz-typography class="m-0 p-2 ant-bg-primary text-white rounded-top">THÔNG TIN KHÁM</h5>
             <div class="w-100 p-2">
-              <h6 nz-typography class="m-0 p-0 d-flex align-items-center ant-text-primary">
+              <h6 *ngIf="hospitalSelected$ | async as hospital" nz-typography
+                class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
                 <i nz-icon nzType="home" nzTheme="outline" class="me-2"></i>
-                Bệnh viện DKKV Củ Chi
+                {{hospital.name }}
+              </h6>
+              <h6 *ngIf="bookingDateSelected$ | async as bookingDate" nz-typography
+                class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
+                <i nz-icon nzType="calendar" nzTheme="outline" class="me-2"></i>
+                Ngày khám: {{bookingDate | date: 'dd/MM/yyyy'}}
+              </h6>
+              <h6 *ngIf="hospitalServiceSelected$ | async as hospitalService" nz-typography
+                class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
+                <i nz-icon nzType="file-text" nzTheme="outline" class="me-2"></i>
+                Chuyên khoa: {{hospitalService.specialist.name }}
+              </h6>
+              <h6 *ngIf="hospitalServiceSelected$ | async as hospitalService" nz-typography
+                class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
+                <i nz-icon nzType="dollar" nzTheme="outline" class="me-2"></i>
+                Tiền khám: {{hospitalService.price | currency: 'VND' : 'symbol' }}
+              </h6>
+              <h6 *ngIf="doctorSelected$ | async as doctor" nz-typography
+                class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
+                <i nz-icon nzType="user" nzTheme="outline" class="me-2"></i>
+                Bác sĩ: {{[doctor.firstname, doctor.middlename, doctor.lastname].join(" ")}}
+              </h6>
+              <h6 *ngIf="timeSelected$ | async as time" nz-typography
+                class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
+                <i nz-icon nzType="field-time" nzTheme="outline" class="me-2"></i>
+                Thời gian: {{time}}
+              </h6>
+              <h6 *ngIf="roomSelected$ | async as room" nz-typography
+                class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
+                <i nz-icon nzType="right-square" nzTheme="outline" class="me-2"></i>
+                Phòng khám: {{room}}
               </h6>
             </div>
+            <ng-container *ngIf="patientScheduleMode$ | async as patientScheduleMode">
+              <ng-container *ngIf="patientScheduleMode == 'MULTIPLE' ">
+                <ng-container *ngIf="patientScheduleList$ | async as patientScheduleList">
+                  <div *ngFor="let item of patientScheduleList" class="w-100 p-2">
+                    <h6 nz-typography class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
+                      <i nz-icon nzType="home" nzTheme="outline" class="me-2"></i>
+                      {{item.service.hospital.name }}
+                    </h6>
+                    <h6 nz-typography class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
+                      <i nz-icon nzType="calendar" nzTheme="outline" class="me-2"></i>
+                      Ngày khám: {{item.dateBooking | date: 'dd/MM/yyyy'}}
+                    </h6>
+                    <h6 *ngIf="hospitalServiceSelected$ | async as hospitalService" nz-typography
+                      class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
+                      <i nz-icon nzType="file-text" nzTheme="outline" class="me-2"></i>
+                      Chuyên khoa: {{item.service.specialist.name }}
+                    </h6>
+                    <h6 nz-typography class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
+                      <i nz-icon nzType="dollar" nzTheme="outline" class="me-2"></i>
+                      Tiền khám: {{item.service.price | currency: 'VND' : 'symbol' }}
+                    </h6>
+                    <h6 nz-typography class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
+                      <i nz-icon nzType="user" nzTheme="outline" class="me-2"></i>
+                      Bác sĩ: {{[item.doctor.firstname, item.doctor.middlename, item.doctor.lastname].join(" ")}}
+                    </h6>
+                    <h6 nz-typography class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
+                      <i nz-icon nzType="field-time" nzTheme="outline" class="me-2"></i>
+                      Thời gian: {{item.time}}
+                    </h6>
+                    <h6 nz-typography class="m-0 p-0 mb-2 d-flex align-items-center ant-text-primary">
+                      <i nz-icon nzType="right-square" nzTheme="outline" class="me-2"></i>
+                      Phòng khám: {{item.room}}
+                    </h6>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </ng-container>
           </div>
         </div>
       </div>
